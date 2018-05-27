@@ -1,37 +1,42 @@
 package edu.handong.csee.java.hw3;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
-import java.io.BufferedReader; 
-import java.io.FileNotFoundException; 
-import java.io.FileReader; 
-import java.io.IOException; 
-import java.util.Scanner; 
+public class ChatMessageCounter {
 
+	public static void main(String[] args) {
+		DataReader dataReader = new DataReader();
 
-public class ChatMessageCounter { 
-   public static void main(String[] args) { 
-      Scanner sc = new Scanner(System.in); 
-      System.out.print("filepath : "); 
-      String filePath = sc.nextLine(); 
-      int count = 0; 
-      BufferedReader br = null; 
-      try { 
-         br = new BufferedReader(new FileReader(filePath)); 
-         String line = null; 
-         String[] strArr = null; 
-         int n = 0; 
-         while((line = br.readLine()) != null) { 
-            strArr = line.split(" "); 
-            n = strArr.length; 
-            for(String s:strArr) System.out.println(s); 
-            count += n; 
-         } 
-         } catch (FileNotFoundException fnfe) { 
-         fnfe.printStackTrace(); 
-         } catch (IOException ioe) { 
-         ioe.printStackTrace(); 
+		
+		String inputFilePath = args[0];
+		
 
-         }
-   }
-   
-}
+		String outputFilePath = args[1];
+
+		String outputFileName = "output";
+		
+		try {
+			List<String> files = dataReader.getDirectory(inputFilePath);
+
+			MessageFilter messageFilter = new MessageFilter();
+			messageFilter.messageFiler(inputFilePath,files);
+			ArrayList<HashMap<String, String>> list = messageFilter.getResult();
+
+			List<String> result = messageCount(list);
+			
+			DataWriter dataWriter = new DataWriter();
+			dataWriter.setCSVFile(outputFilePath, outputFileName, result);
+			
+			System.out.println(dataReader.getText(outputFilePath + "\\" + outputFileName + ".csv", "UTF-8"));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
