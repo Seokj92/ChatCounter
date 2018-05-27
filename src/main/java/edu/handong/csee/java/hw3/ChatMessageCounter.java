@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class ChatMessageCounter { 
    public static void main(String[] args) { 
-      Scanner scan = new Scanner(System.in); 
+      Scanner sc = new Scanner(System.in); 
       System.out.print("filepath : "); 
-      String filePath = scan.nextLine(); 
+      String filePath = sc.nextLine(); 
       int count = 0; 
       BufferedReader br = null; 
       try { 

@@ -1,42 +1,53 @@
 package edu.handong.csee.java.hw3;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-//read all chat messages
-
+import java.util.List;
 
 public class DataReader {
 
-	public static void main(String[] args) {
-		DataReader dataReader = new DataReader();
-		dataReader.getData(args[0]);
-	}
-
-	public ArrayList<String> getData(String strDir) {
-
-		getDirectory(strDir);
-		File[] files = getListOfFilesFromDirectory(getDirectory(strDir));
-		ArrayList<String> messages = readFiles(files);
-		return messages;
-	}
-
-	private File getDirectory(String strDir) {		
-		File myDirectory = new File(strDir);
-		return myDirectory;
-	}
-
-	private File[] getListOfFilesFromDirectory(File dataDir) {
-
-		for(File file : dataDir.listFiles()) {
-			System.out.println(file.getAbsolutePath());
+	public String getText(String path, String encoding) {
+		BufferedReader br = null;
+		String text = "";
+		String line;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding));
+			while ((line = br.readLine()) != null) {
+				text = text + line + "\n";
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return dataDir.listFiles();
+
+		return text;
 	}
 
-	private ArrayList<String> readFiles(File[] files) {
-		ArrayList<String> messages = new ArrayList<String>();
-		return messages;
+	public List<String> getDirectory(String strDir) throws IOException {
+		List<String> result = new ArrayList<>();
+		File dir = new File(strDir);
+		File[] fileList = dir.listFiles();
+		for (int i = 0; i < fileList.length; i++) {
+			File file = fileList[i];
+			if (file.isFile()) {
+				// 파일이 있다면 파일 이름 출력
+				result.add(file.getName().toString());
+			}
+		}
+		return result;
 	}
-
 }
