@@ -13,4 +13,9 @@ import java.util.Locale;
 public class MessageFilter {
 
 	
+	
+
+	public ArrayList<HashMap<String, String>> getResult() {
+		return result;
+	}
 }

@@ -9,7 +9,20 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is a class to read Data
+ * @author JS
+ * This class has methods(getText, getDirectory)
+ */
+
 public class DataReader {
+	
+	/**
+	 * This method is to get text
+	 * @param path
+	 * @param encoding
+	 * @return String
+	 */
 
 	public String getText(String path, String encoding) {
 		BufferedReader br = null;
@@ -17,7 +30,7 @@ public class DataReader {
 		String line;
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding));
-			while ((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null) { //read until meet null
 				text = text + line + "\n";
 			}
 		} catch (FileNotFoundException e) {
@@ -37,6 +50,12 @@ public class DataReader {
 		return text;
 	}
 
+	/**
+	 * Method for getting directory.
+	 * @param strDir
+	 * @return List<String>
+	 * @throws IOException
+	 */
 	public List<String> getDirectory(String strDir) throws IOException {
 		List<String> result = new ArrayList<>();
 		File dir = new File(strDir);
@@ -44,7 +63,7 @@ public class DataReader {
 		for (int i = 0; i < fileList.length; i++) {
 			File file = fileList[i];
 			if (file.isFile()) {
-				// 파일이 있다면 파일 이름 출력
+				// if there is a file print out the name of the file.
 				result.add(file.getName().toString());
 			}
 		}
