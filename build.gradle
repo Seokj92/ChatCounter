@@ -33,5 +33,6 @@ repositories {
     jcenter()
 }
 
+//distZip
 apply plugin : 'application'
 mainClassName = "edu.handong.csee.java.hw3.ChatMessageCounter"

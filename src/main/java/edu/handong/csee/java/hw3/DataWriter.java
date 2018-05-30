@@ -6,7 +6,21 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
 
+/**
+ * This is a class for write the data.
+ * @author JS
+ * This class has DataWriter method.
+ * When you read the file on the wordpad, set the encoding UTF-8 to keep Korean character from breaking.
+ */
 public class DataWriter {
+	
+	/**
+	 * Method for set the result(CSV file).
+	 * Numbers tell you how many times people speak in the kakaotalk
+	 * @param filePath
+	 * @param fileName
+	 * @param list
+	 */
 	
 	public void setCSVFile(String filePath, String fileName, List<String> list){
 		try{
