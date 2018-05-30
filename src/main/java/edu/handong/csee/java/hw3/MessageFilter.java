@@ -130,7 +130,10 @@ public class MessageFilter {
 			if(line[i].length()>=48){//the length of date is 48
 				if(isDateTXTValid(line[i].substring(16, line[i].length()-16))){//I check it again whether it is date format or not
 					txtDate = line[i].substring(16, line[i].length()-16); //put the area of date on static variable.
-					txtDate = txtDate.substring(0,4) + "-" + txtDate.substring(6,8) + "-" + txtDate.substring(10,12);
+					String yyyy = txtDate.substring(0, txtDate.indexOf('년'));
+					String mm = txtDate.substring(txtDate.indexOf('년')+2, txtDate.indexOf('월'));
+					String dd = txtDate.substring(txtDate.indexOf('월')+2,txtDate.indexOf('일'));
+					txtDate = yyyy + "-" + convertMM(mm) + "-" + dd; //convertMM method(refer the method below) is needed because January~September is shown 1~9 not 01~09. 
 							//make it [YYYY-MM-DD] form
 				}
 			}
@@ -206,7 +209,7 @@ public class MessageFilter {
 		}
 	}
 	/**
-	 * It is method for convert "오전 1시  33분-> 01:33"
+	 * It is method for convert "오전 1시  33분 to 01:33"
 	 * To make the date form of the CSV file and the TXT file identical for checking duplicate message.
 	 * @param AAHHMM
 	 * @return
@@ -279,10 +282,33 @@ public class MessageFilter {
 		return result;
 	}
 	
-/**
- * This is method to get result.
- * @return result
- */
+	
+	/**
+	 * This is method for changing form of month
+	 * It is also to make the date form of the CSV file and the TXT file identical for checking duplicate message.
+	 * @param mm
+	 * @return String
+	 */
+	public static String convertMM(String mm){
+		String result = "";
+
+		int month = Integer.parseInt(mm);
+
+		if(month < 10){
+			result = "0"+ mm;
+		}else{
+			result = mm;
+		}
+
+		return result;
+	}
+
+
+	/**
+	 * This is method to get result.
+	 * It is also 
+	 * @return result
+	 */
 	public ArrayList<HashMap<String, String>> getResult() {
 		return result;
 	}

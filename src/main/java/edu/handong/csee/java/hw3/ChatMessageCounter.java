@@ -22,7 +22,7 @@ public class ChatMessageCounter {
 	 * Put the directory path to read all the files to be read
 	 * Set the directory path to get the file(in the form of .CSV)
 	 * I set the name of outputfile(output)
-	 * 
+	 * @param args
 	 */
 
 	public static void main(String[] args) {

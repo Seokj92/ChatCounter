@@ -52,8 +52,7 @@ public class DataReader {
 
 	/**
 	 * Method for getting directory.
-	 * @param strDir
-	 * @return List<String>
+	 * @param strDir	 
 	 * @throws IOException
 	 */
 	public List<String> getDirectory(String strDir) throws IOException {
