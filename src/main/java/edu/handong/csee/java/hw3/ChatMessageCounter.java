@@ -32,7 +32,7 @@ public class ChatMessageCounter {
 		
 		String inputFilePath = args[0]; //ex) C:\\Users\\PC\\Downloads\\Chat-Java-20180527T144139Z-001\\Chat-Java
 		String outputFilePath = args[1]; //set the directory like inputFilePath
-		String outputFileName = "output";//you can change the name of this file. ex)output => args[2](you can put the name in the run configurations)
+		String outputFileName = "output";
 		
 		try {
 			List<String> files = dataReader.getDirectory(inputFilePath);
@@ -114,92 +114,4 @@ public class ChatMessageCounter {
 
 }
 
-/*
-* It should be fixed in order for it to work.
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-
-
-
-	public void run(String[] args) {
-		Options options = createOptions();
-
-		if(parseOptions(options, args)){
-			if (help){
-				printHelp(options);
-				return;
-			}
-
-
-			System.out.println("You provided \"" + path + "\" as the value of the option i");
-
-
-			if(verbose) {
-
-				System.out.println("Your program is terminated. );
-			}
-		}
-	}
-
-	private boolean parseOptions(Options options, String[] args) {
-		CommandLineParser parser = new DefaultParser();
-
-		try {
-
-			CommandLine cmd = parser.parse(options, args);
-
-			inputPath = cmd.getOptionValue("i");
-			outputPath = cmd.getOptionValue("o");
-			help = cmd.hasOption("h");
-
-		} catch (Exception e) {
-			printHelp(options);
-			return false;
-		}
-
-		return true;
-	}
-
-
-	private Options createOptions() {
-		Options options = new Options();
-
-
-		options.addOption(Option.builder("i").longOpt("path")
-				.desc("Set a path of a directory that contains input files")
-				.hasArg()
-				.argName("Directory path")
-				.required()
-				.build());
-
-
-		options.addOption(Option.builder("o").longOpt("pathtobesaved")
-				.desc("Set a path of a directory to save the file")
-				.hasArg()    
-				.argName("Directory path")
-				.required()
-				.build());
-
-
-		options.addOption(Option.builder("h").longOpt("help")
-		        .desc("Help")
-		        .build());
-
-		return options;
-	}
-
-	private void printHelp(Options options) {
-		// automatically generate the help statement
-		HelpFormatter formatter = new HelpFormatter();
-		String header = "Message Counter";
-		String footer ="\nPlease report issues at https://github.com/Seokj92/ChatCounter";
-		formatter.printHelp("CLIExample", header, options, footer, true);
-	}
-
-}
- */
